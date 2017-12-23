@@ -1,0 +1,27 @@
+{
+  "name": "build-a-voting-app",
+  "version": "1.0.0",
+  "description": "A API for the voting-app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vitao18/build-a-voting-app.git"
+  },
+  "keywords": [
+    "Javascript",
+    "Express",
+    "Mongodb"
+  ],
+  "author": "Victor Pereira Feitosa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vitao18/build-a-voting-app/issues"
+  },
+  "homepage": "https://github.com/Vitao18/build-a-voting-app#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
