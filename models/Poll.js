@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const pollSchema = new Schema({
-  name: String,
+  title: String,
   options: [{
-    name: { type: String },
+    option: { type: String },
     count: { type: Number },
   }],
 });
