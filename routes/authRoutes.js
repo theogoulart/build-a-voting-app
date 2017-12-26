@@ -15,5 +15,3 @@ module.exports = app => {
     res.send(`Current user is ${req.user}`);
   });
 }
-
-// f8dO8FO34BM1
