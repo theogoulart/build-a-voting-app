@@ -5,7 +5,7 @@ const pollSchema = new Schema({
   title: String,
   options: [{
     option: { type: String },
-    count: { type: Number },
+    count: { type: Number, default: 0 },
   }],
 });
 
