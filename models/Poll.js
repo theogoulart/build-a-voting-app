@@ -9,4 +9,4 @@ const pollSchema = new Schema({
   }],
 });
 
-mongoose.model('users', userSchema);
+mongoose.model('polls', userSchema);
