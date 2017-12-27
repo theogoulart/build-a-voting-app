@@ -1,4 +1,5 @@
 const express = require('express');
+const requireLogin = require('../middlewares/requireLogin');
 const app = express();
 
 module.exports = app => {
@@ -10,7 +11,7 @@ module.exports = app => {
     return "thisss poll"
   });
 
-  app.get('api/polls/new', (req, res) => {
-    return "YEAH THIS IS A NEW POLL"
+  app.post('api/polls', requireLogin, (req, res) => {
+    res.send("BORA, HORA DO SHOW PORRA!");
   });
 }

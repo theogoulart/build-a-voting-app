@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const pollSchema = new Schema({
+  _user: { type: Schema.Types.ObjectId, ref: 'User' },
   title: String,
   options: [{
     option: { type: String },
@@ -9,4 +10,4 @@ const pollSchema = new Schema({
   }],
 });
 
-mongoose.model('polls', userSchema);
+mongoose.model('polls', pollSchema);
