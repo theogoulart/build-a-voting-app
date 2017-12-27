@@ -9,11 +9,10 @@ const app = express();
 
 module.exports = app => {
   app.get('/api/polls', (req, res) => {
-    res.send('pollssss');
-  });
-
-  app.get('/api/polls/:id', (req, res) => {
-    res.send('pollssss');
+    const polls = Poll.find({})
+    .then(polls => polls)
+    .then(polls => res.json({ data: polls }))
+    .catch(err => err)
   });
 
   app.post('/api/polls', requireLogin, (req, res) => {
@@ -21,4 +20,18 @@ module.exports = app => {
     new Poll({ title, options, _user: req.user }).save();
     res.redirect('/api/polls');
   });
+
+  app.get('/api/polls/:id', (req, res) => {
+    const { id} = req.params;
+    Poll.find({ _id: id })
+    .then(poll => poll)
+    .catch(err => err)
+  });
+
+  app.delete('/api/polls/:id', (req, res) => {
+    const { id } = req.params;
+    Poll.find({ _id: id }).remove()
+    res.redirect('/api/polls');
+  });
+
 }
