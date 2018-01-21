@@ -1,18 +1,14 @@
-const express = require('express');
 const mongoose = require('mongoose');
-
 const requireLogin = require('../middlewares/requireLogin');
 
 const Poll = mongoose.model('polls');
 
-const app = express();
-
-module.exports = app => {
+module.exports = (app) => {
   app.get('/api/polls', (req, res) => {
-    const polls = Poll.find({})
-    .then(polls => polls)
-    .then(polls => res.json({ data: polls }))
-    .catch(err => err)
+    Poll.find({})
+      .then(polls => polls)
+      .then(polls => res.json({ data: polls }))
+      .catch(err => err);
   });
 
   app.post('/api/polls', requireLogin, (req, res) => {
@@ -21,17 +17,16 @@ module.exports = app => {
     res.redirect('/api/polls');
   });
 
-  app.get('/api/polls/:id', (req, res) => {
-    const { id} = req.params;
+  app.get('/api/polls/:id', (req) => {
+    const { id } = req.params;
     Poll.find({ _id: id })
-    .then(poll => poll)
-    .catch(err => err)
+      .then(poll => poll)
+      .catch(err => err);
   });
 
   app.delete('/api/polls/:id', (req, res) => {
     const { id } = req.params;
-    Poll.find({ _id: id }).remove()
+    Poll.find({ _id: id }).remove();
     res.redirect('/api/polls');
   });
-
-}
+};
