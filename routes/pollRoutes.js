@@ -29,4 +29,12 @@ module.exports = (app) => {
     Poll.find({ _id: id }).remove();
     res.redirect('/api/polls');
   });
+
+  app.put('/api/polls/', requireLogin, (req, res) => {
+    const { id, title, options } = req.body;
+    Poll.findByIdAndUpdate(id, {options: options}, {} , function (err, doc) {
+      if (err) throw err;
+      res.redirect('/api/polls');
+    });
+  });
 };
