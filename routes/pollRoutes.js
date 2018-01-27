@@ -26,8 +26,10 @@ module.exports = (app) => {
 
   app.delete('/api/polls/:id', (req, res) => {
     const { id } = req.params;
-    Poll.find({ _id: id }).remove();
-    res.redirect('/api/polls');
+    Poll.findByIdAndRemove(id, {}, function (err, doc) {
+      if (err) throw err;
+      res.redirect('/api/polls');
+    });
   });
 
   app.put('/api/polls/', requireLogin, (req, res) => {
