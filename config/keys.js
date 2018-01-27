@@ -1,11 +1,11 @@
-const prod = require('./prod');
+const production = require('./prod');
 const dev = require('./dev');
 
 const env = process.env.NODE_ENV;
 
 const config = {
   dev,
-  prod,
+  production,
 };
 
 module.exports = config[env] || config.dev;
