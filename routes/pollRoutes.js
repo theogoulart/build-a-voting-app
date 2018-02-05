@@ -8,7 +8,7 @@ module.exports = (app) => {
     Poll.find({})
       .then(polls => polls)
       .then(polls => res.json({ data: polls }))
-      .catch(err => err);
+      .catch(err => console.error('app find', err));
   });
 
   app.post('/api/polls', requireLogin, (req, res) => {
@@ -21,22 +21,20 @@ module.exports = (app) => {
     const { id } = req.params;
     Poll.find({ _id: id })
       .then(poll => poll)
-      .catch(err => err);
+      .catch(err => console.error('app get', err));
   });
 
   app.delete('/api/polls/:id', (req, res) => {
     const { id } = req.params;
-    Poll.findByIdAndRemove(id, {}, function (err, doc) {
-      if (err) throw err;
-      res.redirect('/api/polls');
-    });
+    Poll.findByIdAndRemove(id, {})
+      .then(() => res.redirect('/api/polls'))
+      .catch(err => console.error('app delete', err));
   });
 
   app.put('/api/polls/', requireLogin, (req, res) => {
-    const { id, title, options } = req.body;
-    Poll.findByIdAndUpdate(id, {options: options}, {} , function (err, doc) {
-      if (err) throw err;
-      res.redirect('/api/polls');
-    });
+    const { id, options } = req.body;
+    Poll.findByIdAndUpdate(id, { options }, {})
+      .then(() => res.redirect('/api/polls'))
+      .catch(err => console.error('app put', err));
   });
 };
