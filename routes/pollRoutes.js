@@ -6,7 +6,6 @@ const Poll = mongoose.model('polls');
 module.exports = (app) => {
   app.get('/api/polls', (req, res) => {
     Poll.find({})
-      .then(polls => polls)
       .then(polls => res.json({ data: polls }))
       .catch(err => console.error('app find', err));
   });
